@@ -1,13 +1,16 @@
 import React from 'react';
-import { Switch, Route, NavLink } from 'react-router-dom';
+import { Switch, Route, NavLink, Link } from 'react-router-dom';
 
 import Game from './components/Game';
 import About from './components/About';
+import NavBar from './components/NavBar';
 import './App.css';
 
 function App() {
 	return (
 		<div className='App'>
+			<NavBar />
+
 			<Switch>
 				<Route exact path='/'>
 					<Game />
@@ -16,15 +19,6 @@ function App() {
 					<About />
 				</Route>
 			</Switch>
-      <nav className='navbar'>
-			<NavLink exact to='/'  activeClassName='activeNavButton' className='NLink'>
-				Game
-			</NavLink>
-
-			<NavLink to='/about'  activeClassName='activeNavButton' className='NLink'>
-				About
-			</NavLink>
-      </nav>
 		</div>
 	);
 }
