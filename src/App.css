@@ -1,14 +1,27 @@
 .App {
   text-align: center;
+  height: 100vh;
+  box-sizing: border-box;
 }
 html {
   font-size: 62.5%;
 }
+
+
 .navbar {
   display: flex;
   justify-content: space-between;
   text-align: center;
-  
+}
+
+h1{
+  font-size: 3rem;
+  /* color: white; */
+  margin-bottom: 2%;
+}
+
+.label {
+  color:white;
 }
 .NLink {
   text-decoration: none;
@@ -17,10 +30,21 @@ html {
   font-size: 2.5rem;
 }
 
+
 .navbar > a.activeNavButton {
-  background-color: blue;
-  color: white;
-  /* padding: 1%; */
-  /* margin: 50; */
-  /* text-align: center; */
+  background-color: yellow;
+  color: black;
+  border:1px solid black;
+  box-shadow: 0 5px 10px black;
 } 
+
+/* .life {
+  background: blue;
+  padding: 10%;
+} */
+.game {
+  display: flex;
+  justify-content: center;
+  padding: 2%;
+  background-color: black;
+}
