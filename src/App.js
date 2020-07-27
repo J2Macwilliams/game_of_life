@@ -16,10 +16,15 @@ function App() {
 					<About />
 				</Route>
 			</Switch>
+      <nav className='navbar'>
+			<NavLink exact to='/'  activeClassName='activeNavButton' className='NLink'>
+				Game
+			</NavLink>
 
-			<NavLink to='/'>Game</NavLink>
-
-			<NavLink to='/about'>About</NavLink>
+			<NavLink to='/about'  activeClassName='activeNavButton' className='NLink'>
+				About
+			</NavLink>
+      </nav>
 		</div>
 	);
 }
