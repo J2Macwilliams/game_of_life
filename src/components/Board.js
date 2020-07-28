@@ -15,12 +15,11 @@ let countPeeps = [
 const Game = () => {
 	// state
 	const numRows = 40;
-    const numCols = 60;
-    const cycle = 0;
+	const numCols = 60;
+	const cycle = 0;
 	const [clear, setClear] = useState(false);
 	const [active, setActive] = useState(false);
-	
-    
+
 	const [grid, setGrid] = useState(() => {
 		const rows = [];
 		for (let i = 0; i < numRows; i++) {
@@ -29,18 +28,17 @@ const Game = () => {
 		return rows;
 	});
 
-    // Clear the Board
-    const scratch = useCallback(() => {
-       setGrid(() => {
-        const rows = [];
-		for (let i = 0; i < numRows; i++) {
-			rows.push(Array(numCols).fill(0));
-		}
-		return rows;
-       })
-        
-    },[])
-    
+	// Clear the Board
+	const scratch = useCallback(() => {
+		setGrid(() => {
+			const rows = [];
+			for (let i = 0; i < numRows; i++) {
+				rows.push(Array(numCols).fill(0));
+			}
+			return rows;
+		});
+	}, []);
+
 	// create a reference for active state
 	const activeRef = useRef(active);
 	activeRef.current = active;
@@ -78,6 +76,27 @@ const Game = () => {
 	return (
 		<div className='life'>
 			{/* Game Grid */}
+			<div className='top'>
+				<div
+					className='bar cycle'
+					onClick={() => {
+						setActive(!active);
+						activeRef.current = true;
+						gameAlive();
+					}}
+				>
+					{!active ? 'start' : 'stop'}
+				</div>
+
+				<div className='bar generation'>Generation: {cycle}</div>
+				<div className='bar size'>
+					Grid Size: {numCols}x{numRows}
+				</div>
+				<div className='bar clear' onClick={() => scratch()}>
+					Clear
+				</div>
+			</div>
+
 			<div
 				className='game'
 				style={{
@@ -109,27 +128,8 @@ const Game = () => {
 					))
 				)}
 			</div>
-			{/* dashboard */}
-			<div className='right'>
-				<button
-					className='bar cycle'
-					onClick={() => {
-						setActive(!active);
-						activeRef.current = true;
-						gameAlive();
-					}}
-				>
-					{!active ? 'start' : 'stop'}
-				</button>
-				<button className='bar clear' onClick={() => scratch()}>
-					Clear
-				</button>
-				<div className='bar generation'>Generation: {cycle}</div>
-				<div className='bar size'>
-					Grid Size: {numCols}x{numRows}
-				</div>
-				<div className='bar presets'>Presets</div>
-			</div>
+			<div className='game presets'>Presets</div>
+
 		</div>
 	);
 };
