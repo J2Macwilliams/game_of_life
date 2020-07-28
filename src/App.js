@@ -1,9 +1,11 @@
 import React from 'react';
 import { Switch, Route, NavLink, Link } from 'react-router-dom';
 
-import Game from './components/Game';
+import Board from './components/Board';
 import About from './components/About';
+import Rules from './components/Rules'
 import NavBar from './components/NavBar';
+
 import './App.css';
 
 function App() {
@@ -13,7 +15,10 @@ function App() {
 
 			<Switch>
 				<Route exact path='/'>
-					<Game />
+					<Board />
+				</Route>
+				<Route path='/rules'>
+					<Rules />
 				</Route>
 				<Route path='/about'>
 					<About />
