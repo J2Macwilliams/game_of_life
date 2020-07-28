@@ -1,24 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { produce } from 'immer';
 
 const Game = () => {
-	const [numRows, setNumRows] = useState(40);
-	const [numCols, setNumCols] = useState(60);
-	const [active, setActive] = useState();
+	const numRows = 10;
+	const numCols = 10;
+	const [active, setActive] = useState(false);
 	const [cycle, setCycle] = useState(0);
 
 	const [grid, setGrid] = useState(() => {
 		const rows = [];
 		for (let i = 0; i < numRows; i++) {
-			rows.push(Array.from(Array(numCols), () => 0));
+			rows.push(Array(numCols).fill(0));
 		}
 		return rows;
 	});
-
-	const running = () => {
-		setActive(!active);
-	};
+	
 	return (
 		<div className='life'>
+			{/* Game Grid */}
 			<div
 				className='game'
 				style={{
@@ -31,7 +30,14 @@ const Game = () => {
 					rows.map((col, k) => (
 						<div
 							key={`${i}-${k}`}
-							onClick={() => setGrid[i][k] == 1}
+							onClick={() => {
+                                // use immer to create a copy of the grid state
+								const nextGen = produce(grid, copy => {
+                                    // toggle cell from alive to dead
+									copy[i][k] = grid[i][k] ? 0 : 1;
+								});
+								setGrid(nextGen);
+							}}
 							style={{
 								width: 15,
 								height: 15,
@@ -42,21 +48,32 @@ const Game = () => {
 					))
 				)}
 			</div>
+			{/* dashboard */}
 			<div className='right'>
-				
-					<button className='cycle' onClick={() => running()}>
-						{!active ? 'start' : 'stop'}
-					</button>
-					<div className='bar generation'>Generation: {cycle}</div>
-                    <div className='bar size'>Grid Size: {numCols}x{numRows}</div>
-                    <div className='bar presets'>Presets</div>
-					
-						
-					
-				
+				<button className='cycle' onClick={() => setActive(!active)}>
+					{!active ? 'start' : 'stop'}
+				</button>
+				<div className='bar generation'>Generation: {cycle}</div>
+				<div className='bar size'>
+					Grid Size: {numCols}x{numRows}
+				</div>
+				<div className='bar presets'>Presets</div>
 			</div>
 		</div>
 	);
 };
 
 export default Game;
+
+// trying to change the grid
+// onClick={() => {
+//     const nextGen = [...grid]
+//     nextGen[i][k] = 1
+//     setGrid(nextGen)
+//     console.log(grid)
+// }}
+
+// // make a copy of grid
+// const nextGen = [...grid]
+// console.log('nextGen:', nextGen)
+// console.log('truthy?:', nextGen == grid)
