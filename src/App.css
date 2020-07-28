@@ -1,38 +1,74 @@
 .App {
   text-align: center;
+  height: 100vh;
+  box-sizing: border-box;
+  background: black;
+}
+html {
+  font-size: 62.5%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1{
+  font-size: 3rem;
+  /* color: white; */
+  margin-bottom: 2%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.label {
+  color:white;
+}
+.NLink {
+  text-decoration: none;
+  padding: 1%;
+  color:rgba(248, 246, 246, 0.6);
+  font-size: 2.5rem;
+}
+
+
+.navbar > a.activeNavButton {
+  background-color: yellow;
+  color: black;
+  border:1px solid black;
+  box-shadow: 0 5px 10px black;
+} 
+
+.life {
+  padding: 3%;
+  display: flex;
+  /* flex-direction: column; */
+}
+.cycle {
+  font-size: 2rem;
+}
+.right {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 20%;
+  margin-left: 2%;
+}
+
+.bar {
+  font-size: 2rem;
+  padding: 2%;
+  margin: 1%;
+}
+
+.generation {
+  background: grey;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.size {
+  color: yellow;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.presets {
+  color: fuchsia
 }
