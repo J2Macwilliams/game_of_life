@@ -2,6 +2,7 @@
   text-align: center;
   height: 100vh;
   box-sizing: border-box;
+  background: black;
 }
 html {
   font-size: 62.5%;
@@ -26,7 +27,7 @@ h1{
 .NLink {
   text-decoration: none;
   padding: 1%;
-  color: black;
+  color:rgba(248, 246, 246, 0.6);
   font-size: 2.5rem;
 }
 
@@ -38,13 +39,36 @@ h1{
   box-shadow: 0 5px 10px black;
 } 
 
-/* .life {
-  background: blue;
-  padding: 10%;
-} */
-.game {
+.life {
+  padding: 3%;
   display: flex;
-  justify-content: center;
+  /* flex-direction: column; */
+}
+.cycle {
+  font-size: 2rem;
+}
+.right {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  margin-left: 2%;
+}
+
+.bar {
+  font-size: 2rem;
   padding: 2%;
-  background-color: black;
+  margin: 1%;
+}
+
+.generation {
+  background: grey;
+  color: white;
+}
+
+.size {
+  color: yellow;
+}
+
+.presets {
+  color: fuchsia
 }
