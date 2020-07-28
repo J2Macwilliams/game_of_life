@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, NavLink, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import Board from './components/Board';
 import About from './components/About';
