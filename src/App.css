@@ -2,8 +2,10 @@
   text-align: center;
   height: 100vh;
   box-sizing: border-box;
+  max-width: 100%;
   background: black;
 }
+
 html {
   font-size: 62.5%;
 }
@@ -42,22 +44,40 @@ h1{
 .life {
   padding: 3%;
   display: flex;
-  /* flex-direction: column; */
-}
-.cycle {
-  font-size: 2rem;
-}
-.right {
-  display: flex;
   flex-direction: column;
-  width: 20%;
-  margin-left: 2%;
+  align-items: center;
+  /* width: 100%; */
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+  border: 2px solid black;
+  width: 80%;
 }
 
 .bar {
   font-size: 2rem;
-  padding: 2%;
-  margin: 1%;
+  padding: .2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+}
+.random {
+  background: gold;
+  color: black;
+}
+.cycle {
+  background: white;
+}
+
+.size {
+  color: yellow;
+}
+
+.clear {
+  background: #f9fcae;
 }
 
 .generation {
@@ -65,10 +85,8 @@ h1{
   color: white;
 }
 
-.size {
-  color: yellow;
-}
-
 .presets {
-  color: fuchsia
+  color: #f5f1a9;
+  border: 1px solid #f5f1a9;
+  font-size: 2rem;
 }
