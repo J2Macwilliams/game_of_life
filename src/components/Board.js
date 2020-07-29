@@ -6,13 +6,27 @@ import { useStyles, valueText, marks, countPeeps } from './Helpers';
 const Game = () => {
 	const classes = useStyles();
 	// state
-	const numRows = 40;
-	const numCols = 60;
-	const [cycle, setCycle] = useState(0);
-	const [speed, setSpeed] = useState(100);
+	const numRows = 30;
+	const numCols = 50;
 	const [active, setActive] = useState(false);
 	const [grid, setGrid] = useState([]);
+	const [cycle, setCycle] = useState(0);
+	const [speed, setSpeed] = useState(100);
 
+	// create references for current state
+	const gridRef = useRef();
+	gridRef.current = gridRef;
+
+	const activeRef = useRef(active);
+	activeRef.current = active;
+
+	const speedRef = useRef(speed);
+	speedRef.current = speed;
+
+	const cycleRef = useRef(cycle);
+	cycleRef.current = cycle;
+
+	// for changing the speed of the dbl buffer
 	const handleChange = (event, newValue) => {
 		event.preventDefault();
 		setSpeed(newValue);
@@ -31,40 +45,31 @@ const Game = () => {
 
 	// invoke the board
 	useEffect(() => {
-        
 		scratch();
-    }, []);
-    
-    // create Random config
-    const randomGrid = useCallback(() => {
-        setGrid(() => {
-          const rows = [];
-          for (let i = 0; i < numRows; i++) {
-            rows.push(Array.from(Array(numCols), () => Math.round(Math.random())));
-          }
-          return rows;
-        });
-      }, [numRows, numCols]);
-        
-    // console.log(grid)
+	}, []);
 
-	// create references for current state
-	const speedRef = useRef(speed);
-	speedRef.current = speed;
+	// create Random config
+	const randomGrid = useCallback(() => {
+		setGrid(() => {
+			const rows = [];
+			for (let i = 0; i < numRows; i++) {
+				rows.push(Array.from(Array(numCols), () => Math.round(Math.random())));
+			}
+			return rows;
+		});
+	}, [numRows, numCols]);
 
-	const cycleRef = useRef(cycle);
-	cycleRef.current = cycle;
+	// console.log(grid)
 
-	const activeRef = useRef(active);
-	activeRef.current = active;
-
-	// Run the Game of Life
-	const gameAlive = useCallback(() => {
+	// Run the Game of Life, DBl Buffer
+	const runAlive = useCallback(() => {
+        // check/return if not running
 		if (!activeRef.current) {
 			return;
 		} else {
+            // create automata
 			setGrid(g => {
-				return produce(g, copy => {
+				return produce(g, gCopy => {
 					for (let i = 0; i < numRows; i++) {
 						for (let k = 0; k < numCols; k++) {
 							let peeps = 0;
@@ -74,21 +79,24 @@ const Game = () => {
 								if (I >= 0 && I < numRows && K >= 0 && K < numCols) {
 									peeps += g[I][K];
 								}
-							});
+                            });
+                            
 							if (peeps < 2 || peeps > 3) {
-								copy[i][k] = 0;
-							} else if (peeps === 3 && g[i][k] === 0) {
-								copy[i][k] = 1;
+								gCopy[i][k] = 0;
+							} else if (g[i][k] === 0 && peeps === 3 ) {
+								gCopy[i][k] = 1;
 							}
 						}
 					}
 				});
 			});
 		}
-		setCycle(cycleRef.current +1);
-		setTimeout(gameAlive, speedRef.current);
+		
+        setTimeout(runAlive, speedRef.current);
+        setCycle(cycleRef.current ++);
 	}, []);
 
+    
 	return (
 		<div className='life'>
 			{/* Game Grid */}
@@ -100,8 +108,8 @@ const Game = () => {
 					className={classes.slider}
 					min={0}
 					max={1200}
-					value={speed}
-					defaultValue={speed}
+					value={speedRef.current}
+					defaultValue={speedRef.current}
 					onChange={handleChange}
 					getAriaValueText={valueText}
 					marks={marks}
@@ -114,20 +122,25 @@ const Game = () => {
 					onClick={() => {
 						setActive(!active);
 						activeRef.current = true;
-						gameAlive();
+						runAlive();
 					}}
 				>
 					{!active ? 'start' : 'stop'}
 				</div>
-				<div className='bar random' onClick={() => randomGrid()}>Random</div>
+				<div className='bar random' onClick={() => randomGrid()}>
+					Random
+				</div>
 				<div className='bar generation'>Generation: {cycle}</div>
 				<div className='bar size'>
 					Grid Size: {numCols}x{numRows}
 				</div>
-				<div className='bar clear' onClick={() => {
-                    scratch()
-                    setCycle(0)
-                    }}>
+				<div
+					className='bar clear'
+					onClick={() => {
+						scratch();
+						setCycle(0);
+					}}
+				>
 					Clear
 				</div>
 			</div>
@@ -146,9 +159,9 @@ const Game = () => {
 							key={`${i}-${k}`}
 							onClick={() => {
 								// use immer to create a copy of the grid state
-								const nextGen = produce(grid, copy => {
+								const nextGen = produce(grid, gridCopy => {
 									// toggle cell from alive to dead
-									copy[i][k] = grid[i][k] ? 0 : 1;
+									gridCopy[i][k] = grid[i][k] ? 0 : 1;
 								});
 								setGrid(nextGen);
 							}}
