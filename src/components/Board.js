@@ -9,7 +9,7 @@ const Game = () => {
 	const numRows = 40;
 	const numCols = 60;
 	const [cycle, setCycle] = useState(0);
-	const [speed, setSpeed] = useState(200);
+	const [speed, setSpeed] = useState(100);
 	const [active, setActive] = useState(false);
 	const [grid, setGrid] = useState([]);
 
@@ -31,8 +31,22 @@ const Game = () => {
 
 	// invoke the board
 	useEffect(() => {
+        
 		scratch();
-	}, []);
+    }, []);
+    
+    // create Random config
+    const randomGrid = useCallback(() => {
+        setGrid(() => {
+          const rows = [];
+          for (let i = 0; i < numRows; i++) {
+            rows.push(Array.from(Array(numCols), () => Math.round(Math.random())));
+          }
+          return rows;
+        });
+      }, [numRows, numCols]);
+        
+    // console.log(grid)
 
 	// create references for current state
 	const speedRef = useRef(speed);
@@ -71,8 +85,8 @@ const Game = () => {
 				});
 			});
 		}
-		setCycle(cycleRef.current += 1)
-		setTimeout(gameAlive, speed);
+		setCycle(cycleRef.current +1);
+		setTimeout(gameAlive, speedRef.current);
 	}, []);
 
 	return (
@@ -105,12 +119,15 @@ const Game = () => {
 				>
 					{!active ? 'start' : 'stop'}
 				</div>
-
+				<div className='bar random' onClick={() => randomGrid()}>Random</div>
 				<div className='bar generation'>Generation: {cycle}</div>
 				<div className='bar size'>
 					Grid Size: {numCols}x{numRows}
 				</div>
-				<div className='bar clear' onClick={() => scratch()}>
+				<div className='bar clear' onClick={() => {
+                    scratch()
+                    setCycle(0)
+                    }}>
 					Clear
 				</div>
 			</div>
