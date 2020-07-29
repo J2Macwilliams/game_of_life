@@ -1,17 +1,31 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { produce } from 'immer';
-import { Slider, Typography } from '@material-ui/core';
+import { useForm } from 'react-hook-form';
+import { Slider } from '@material-ui/core';
+
 import { useStyles, valueText, marks, countPeeps } from './Helpers';
 
 const Game = () => {
+	// react-hook-form
 	const classes = useStyles();
+	const { register, handleSubmit } = useForm();
 	// state
-	const numRows = 30;
-	const numCols = 50;
+	const [numRows, setNumRows] = useState(40);
+	const [numCols, setNumCols] = useState(60);
+	const [speed, setSpeed] = useState(100);
+	const [color, setColor] = useState('white');
+	const [adjust, setAdjust] = useState(false);
 	const [active, setActive] = useState(false);
 	const [grid, setGrid] = useState([]);
 	const [cycle, setCycle] = useState(0);
-	const [speed, setSpeed] = useState(100);
+
+	// data from form
+	const onSubmit = data => {
+		setNumRows(parseInt(data.row));
+		setNumCols(parseInt(data.col));
+		setColor(data.color);
+		setAdjust(true);
+	};
 
 	// create references for current state
 	const gridRef = useRef();
@@ -19,6 +33,12 @@ const Game = () => {
 
 	const activeRef = useRef(active);
 	activeRef.current = active;
+
+	const rowRef = useRef();
+	rowRef.current = numRows;
+
+	const columnRef = useRef();
+	columnRef.current = numCols;
 
 	const speedRef = useRef(speed);
 	speedRef.current = speed;
@@ -36,8 +56,8 @@ const Game = () => {
 	const scratch = useCallback(() => {
 		setGrid(() => {
 			const rows = [];
-			for (let i = 0; i < numRows; i++) {
-				rows.push(Array(numCols).fill(0));
+			for (let i = 0; i < rowRef.current; i++) {
+				rows.push(Array(columnRef.current).fill(0));
 			}
 			return rows;
 		});
@@ -45,45 +65,54 @@ const Game = () => {
 
 	// invoke the board
 	useEffect(() => {
-		scratch();
-	}, [scratch]);
+		if (adjust == false) {
+			return;
+		} else {
+			scratch();
+		}
+	}, [adjust, numRows, numCols]);
 
 	// create Random config
 	const randomGrid = useCallback(() => {
 		setGrid(() => {
 			const rows = [];
-			for (let i = 0; i < numRows; i++) {
-				rows.push(Array.from(Array(numCols), () => Math.round(Math.random())));
+			for (let i = 0; i < rowRef.current; i++) {
+				rows.push(
+					Array.from(Array(columnRef.current), () => Math.round(Math.random()))
+				);
 			}
 			return rows;
 		});
 	}, [numRows, numCols]);
 
-	// console.log(grid)
-
 	// Run the Game of Life, DBl Buffer
 	const runAlive = useCallback(() => {
-        // check/return if not running
+		// check/return if not running
 		if (!activeRef.current) {
 			return;
 		} else {
-            // create automata
+			// create automata
 			setGrid(g => {
 				return produce(g, gCopy => {
-					for (let i = 0; i < numRows; i++) {
-						for (let k = 0; k < numCols; k++) {
+					for (let i = 0; i < rowRef.current; i++) {
+						for (let k = 0; k < columnRef.current; k++) {
 							let peeps = 0;
 							countPeeps.forEach(([x, y]) => {
 								const I = i + x;
 								const K = k + y;
-								if (I >= 0 && I < numRows && K >= 0 && K < numCols) {
+								if (
+									I >= 0 &&
+									I < rowRef.current &&
+									K >= 0 &&
+									K < columnRef.current
+								) {
 									peeps += g[I][K];
 								}
-                            });
-                            
+							});
+
 							if (peeps < 2 || peeps > 3) {
 								gCopy[i][k] = 0;
-							} else if (g[i][k] === 0 && peeps === 3 ) {
+							} else if (g[i][k] === 0 && peeps === 3) {
 								gCopy[i][k] = 1;
 							}
 						}
@@ -91,19 +120,15 @@ const Game = () => {
 				});
 			});
 		}
-		setCycle(cycleRef.current +1);
-        setTimeout(runAlive, speedRef.current);
-        
+		// increment generation count
+		setCycle(cycleRef.current + 1);
+		setTimeout(runAlive, speedRef.current);
 	}, []);
 
-    
 	return (
 		<div className='life'>
-			{/* Game Grid */}
-			<div className={classes.root}>
-				<Typography className={classes.slider} variant='h4'>
-					Speed
-				</Typography>
+			<div className='slider'>
+				<h3 className='tag'>Speed</h3>
 				<Slider
 					className={classes.slider}
 					min={0}
@@ -116,6 +141,8 @@ const Game = () => {
 					valueLabelDisplay='auto'
 				/>
 			</div>
+
+			<h3 className='label'>Choose Board Configuration</h3>
 			<div className='top'>
 				<div
 					className='bar cycle'
@@ -132,11 +159,12 @@ const Game = () => {
 				</div>
 				<div className='bar generation'>Generation: {cycle}</div>
 				<div className='bar size'>
-					Grid Size: {numCols}x{numRows}
+					Grid Size: {numRows}rowsX{numCols}cols
 				</div>
 				<div
 					className='bar clear'
 					onClick={() => {
+						setAdjust(false);
 						scratch();
 						setCycle(0);
 					}}
@@ -144,13 +172,50 @@ const Game = () => {
 					Clear
 				</div>
 			</div>
-
+			<form className='form' onSubmit={handleSubmit(onSubmit)}>
+				<label className='label'>Rows</label>
+				<input
+					className='input'
+					type='range'
+					label='row'
+					placeholder='rows'
+					defaultValue={numRows}
+					min='25'
+					max='40'
+					name='row'
+					ref={register}
+				/>
+				<label className='label'>Colums</label>
+				<input
+					className='input'
+					type='range'
+					label='col'
+					placeholder='columns'
+					defaultValue={numCols}
+					min='25'
+					max='60'
+					name='col'
+					ref={register}
+				/>
+				<input
+					className='input'
+					type='text'
+					label='color'
+					placeholder={color}
+					defaultValue={color}
+					name='color'
+					ref={register}
+				/>
+				<input className='submit' type='submit' />
+			</form>
+			{/* Game Grid */}
 			<div
 				className='game'
 				style={{
 					display: 'grid',
 					gridTemplateColumns: `repeat( ${numCols}, 15px)`,
 					border: '5px solid black',
+					maxHeight: '60vh',
 				}}
 			>
 				{grid.map((rows, i) =>
@@ -169,29 +234,19 @@ const Game = () => {
 							style={{
 								width: 15,
 								height: 15,
-								background: grid[i][k] ? 'whitesmoke' : undefined,
+								background: grid[i][k] ? color : undefined,
 								border: ' 1px solid rgba(248, 246, 246, 0.15)',
 							}}
 						/>
 					))
 				)}
 			</div>
-			<div className='game presets'>Presets</div>
+
+			<div className='presets'>
+				<h1>presets</h1>
+			</div>
 		</div>
 	);
 };
 
 export default Game;
-
-// trying to change the grid
-// onClick={() => {
-//     const nextGen = [...grid]
-//     nextGen[i][k] = 1
-//     setGrid(nextGen)
-//     console.log(grid)
-// }}
-
-// // make a copy of grid
-// const nextGen = [...grid]
-// console.log('nextGen:', nextGen)
-// console.log('truthy?:', nextGen == grid)
