@@ -1,11 +1,11 @@
 import {makeStyles} from '@material-ui/core'
 
 export const useStyles = makeStyles(() => ({
-	root: {
-		width: 300,
-    },
+
     slider: {
-        color: 'darkGray'
+		color: '#696969',
+		margin: 0,
+		
     }
 }));
 
