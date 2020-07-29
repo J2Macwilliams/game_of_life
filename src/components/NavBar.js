@@ -5,13 +5,7 @@ const NavBar = () => {
 	return (
 		<div>
 			<nav className='navbar'>
-            <NavLink
-					to='/rules'
-					activeClassName='activeNavButton'
-					className='NLink'
-				>
-					Conway's Rules
-				</NavLink>
+           
 				<NavLink
 					exact
 					to='/'
@@ -20,6 +14,7 @@ const NavBar = () => {
 				>
 					Game of Life
 				</NavLink>
+				<h1>Conway's </h1>
 				<NavLink
 					to='/about'
 					activeClassName='activeNavButton'
