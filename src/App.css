@@ -127,12 +127,20 @@ h1 {
   flex: 1 0 auto;
 }
 .presets {
-	/* color: #f5f1a9; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 	background: #f5f1a9;
   font-size: 3rem;
+  padding: 0 .5%;
   left: 0;
   bottom: 0;
   position:fixed;
   width: 100%;
-  
+}
+
+.presets > p {
+  color: black;
+  padding: 0 1%;
+  font-size: 1.5rem;
 }
