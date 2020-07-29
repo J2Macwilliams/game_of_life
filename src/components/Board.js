@@ -65,7 +65,7 @@ const Game = () => {
 
 	// invoke the board
 	useEffect(() => {
-		if (adjust == false) {
+		if (adjust === false) {
 			return;
 		} else {
 			scratch();
@@ -159,7 +159,7 @@ const Game = () => {
 				</div>
 				<div className='bar generation'>Generation: {cycle}</div>
 				<div className='bar size'>
-					Grid Size: {numRows}rowsX{numCols}cols
+					Grid Size:<br/> {numRows}r X {numCols}c
 				</div>
 				<div
 					className='bar clear'
