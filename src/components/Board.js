@@ -46,7 +46,7 @@ const Game = () => {
 	// invoke the board
 	useEffect(() => {
 		scratch();
-	}, []);
+	}, [scratch]);
 
 	// create Random config
 	const randomGrid = useCallback(() => {
