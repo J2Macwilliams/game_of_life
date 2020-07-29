@@ -91,9 +91,9 @@ const Game = () => {
 				});
 			});
 		}
-		
+		setCycle(cycleRef.current +1);
         setTimeout(runAlive, speedRef.current);
-        setCycle(cycleRef.current ++);
+        
 	}, []);
 
     
@@ -169,7 +169,7 @@ const Game = () => {
 							style={{
 								width: 15,
 								height: 15,
-								background: grid[i][k] ? 'yellow' : undefined,
+								background: grid[i][k] ? 'whitesmoke' : undefined,
 								border: ' 1px solid rgba(248, 246, 246, 0.15)',
 							}}
 						/>
