@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { produce } from 'immer';
 import { useForm } from 'react-hook-form';
 import { Slider } from '@material-ui/core';
+import {pulsar} from './Presets/Pulsar'
 
 import { useStyles, valueText, marks, countPeeps } from './Helpers';
 
@@ -26,6 +27,7 @@ const Game = () => {
 		setColor(data.color);
 		setAdjust(true);
 	};
+
 
 	// create references for current state
 	const gridRef = useRef();
@@ -84,6 +86,10 @@ const Game = () => {
 			return rows;
 		});
 	}, [numRows, numCols]);
+
+	const pulsarGrid = useCallback(() => {
+		setGrid(pulsar)
+	})
 
 	// Run the Game of Life, DBl Buffer
 	const runAlive = useCallback(() => {
@@ -159,7 +165,8 @@ const Game = () => {
 				</div>
 				<div className='bar generation'>Generation: {cycle}</div>
 				<div className='bar size'>
-					Grid Size:<br/> {numRows}r X {numCols}c
+					Grid Size:
+					<br /> {numRows}r X {numCols}c
 				</div>
 				<div
 					className='bar clear'
@@ -243,7 +250,9 @@ const Game = () => {
 			</div>
 
 			<div className='presets'>
-				<h1>presets</h1>
+				
+				<div onClick={() => pulsarGrid()}>Pulsar</div>
+				<p>presets on 40r60c</p>
 			</div>
 		</div>
 	);
