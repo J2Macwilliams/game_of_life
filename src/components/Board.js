@@ -1,34 +1,24 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { produce } from 'immer';
-
-let countPeeps = [
-	[0, 1],
-	[0, -1],
-	[1, 0],
-	[-1, 0],
-	[1, 1],
-	[1, -1],
-	[-1, 1],
-	[-1, -1],
-];
+import { Slider, Typography } from '@material-ui/core';
+import { useStyles, valueText, marks, countPeeps } from './Helpers';
 
 const Game = () => {
+	const classes = useStyles();
 	// state
 	const numRows = 40;
 	const numCols = 60;
-	const cycle = 0;
-	const [clear, setClear] = useState(false);
+	const [cycle, setCycle] = useState(0);
+	const [speed, setSpeed] = useState(200);
 	const [active, setActive] = useState(false);
+	const [grid, setGrid] = useState([]);
 
-	const [grid, setGrid] = useState(() => {
-		const rows = [];
-		for (let i = 0; i < numRows; i++) {
-			rows.push(Array(numCols).fill(0));
-		}
-		return rows;
-	});
+	const handleChange = (event, newValue) => {
+		event.preventDefault();
+		setSpeed(newValue);
+	};
 
-	// Clear the Board
+	// create clean board
 	const scratch = useCallback(() => {
 		setGrid(() => {
 			const rows = [];
@@ -39,7 +29,18 @@ const Game = () => {
 		});
 	}, []);
 
-	// create a reference for active state
+	// invoke the board
+	useEffect(() => {
+		scratch();
+	}, []);
+
+	// create references for current state
+	const speedRef = useRef(speed);
+	speedRef.current = speed;
+
+	const cycleRef = useRef(cycle);
+	cycleRef.current = cycle;
+
 	const activeRef = useRef(active);
 	activeRef.current = active;
 
@@ -70,12 +71,29 @@ const Game = () => {
 				});
 			});
 		}
-		setTimeout(gameAlive, 1000);
+		setCycle(cycleRef.current += 1)
+		setTimeout(gameAlive, speed);
 	}, []);
 
 	return (
 		<div className='life'>
 			{/* Game Grid */}
+			<div className={classes.root}>
+				<Typography className={classes.slider} variant='h4'>
+					Speed
+				</Typography>
+				<Slider
+					className={classes.slider}
+					min={0}
+					max={1200}
+					value={speed}
+					defaultValue={speed}
+					onChange={handleChange}
+					getAriaValueText={valueText}
+					marks={marks}
+					valueLabelDisplay='auto'
+				/>
+			</div>
 			<div className='top'>
 				<div
 					className='bar cycle'
@@ -129,7 +147,6 @@ const Game = () => {
 				)}
 			</div>
 			<div className='game presets'>Presets</div>
-
 		</div>
 	);
 };
