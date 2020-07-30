@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-export const useStyles = makeStyles(theme => ({
+export const useStyles = makeStyles(() => ({
 	slider: {
 		color: '#696969',
 		margin: 0,
