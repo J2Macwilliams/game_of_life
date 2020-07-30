@@ -4,38 +4,10 @@ import {
 	Card,
 	Typography,
 	Grid,
-	// createMuiTheme,
+	
 } from '@material-ui/core';
 import { useStyles } from './Helpers';
-// import '../App.css';
-// const theme = createMuiTheme();
-// theme.typography.h3 = {
-// 	fontSize: '2rem',
-// 	'@media (min-width:600px)': {
-// 		fontSize: '1.5rem',
-// 	},
-// 	[theme.breakpoints.up('md')]: {
-// 		fontSize: '2.4rem',
-// 	},
-// };
-// theme.typography.h6 = {
-// 	fontSize: '2rem',
-// 	'@media (min-width:600px)': {
-// 		fontSize: '1.3rem',
-// 	},
-// 	[theme.breakpoints.up('md')]: {
-// 		fontSize: '1.8rem',
-// 	},
-// };
-// theme.typography.body2 = {
-// 	fontSize: '1.2rem',
-// 	'@media (min-width:600px)': {
-// 		fontSize: '1.5rem',
-// 	},
-// 	[theme.breakpoints.up('md')]: {
-// 		fontSize: '2.4rem',
-// 	},
-// };
+
 const About = () => {
 	const classes = useStyles();
 	return (
