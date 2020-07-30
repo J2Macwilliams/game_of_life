@@ -100,10 +100,17 @@ h1 {
 	background: gold;
 	color: black;
 }
+.random:hover{
+	background: black;
+	color: gold;
+	border: 1px solid white;
+}
 .cycle {
 	background: white;
 }
-
+.progress {
+	background: red;
+}
 .size {
 	color: yellow;
 }

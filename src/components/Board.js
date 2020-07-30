@@ -162,7 +162,8 @@ const Game = () => {
 			<h3 className='label'>Choose Board Configuration</h3>
 			<div className='top'>
 				<div
-					className='bar cycle'
+					
+					className={!active ? 'bar cycle': 'bar progress'}
 					onClick={() => {
 						setActive(!active);
 						activeRef.current = true;
@@ -264,7 +265,7 @@ const Game = () => {
 				<div onClick={() => pulsarGrid()}>Pulsar</div>
 				<div onClick={() => pentadecathlonGrid()}>Pentadecathlon</div>
 				<div onClick={() => spaceGrid()}>Spaceships</div>
-				{/* <p>presets on 40r60c</p> */}
+				
 			</div>
 		</div>
 	);
