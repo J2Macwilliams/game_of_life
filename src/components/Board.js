@@ -70,15 +70,13 @@ const Game = () => {
 		});
 	}, []);
 
-	// invoke the board initial and with changes 
+	// invoke the board initial and with changes
 	useEffect(() => {
-		scratch()
 		if (adjust === false) {
 			return;
 		} else {
 			scratch();
 		}
-		
 	}, [adjust, numRows, numCols, scratch]);
 
 	// create Random config
