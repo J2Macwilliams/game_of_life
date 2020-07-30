@@ -1,0 +1,150 @@
+.life {
+	width: 100%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+    
+}
+
+.slider {
+	margin-top: 1%;
+	width: 40%;
+	font-size: 1.5rem;
+	color: #f5f1a9;
+}
+.life > p{
+    color: #f5f1a9;
+    font-size: 1rem;
+    
+}
+
+
+
+.top {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	border: 2px solid black;
+	width: 100%;
+}
+
+.bar {
+	font-size: 2rem;
+	padding: 0.2%;
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	width: 15%;
+}
+
+.random {
+	background: gold;
+	color: black;
+}
+.random:hover {
+	background: black;
+	color: gold;
+	border: 1px solid white;
+}
+.cycle {
+	background: white;
+}
+.progress {
+	background: red;
+}
+.size {
+	color: yellow;
+	border: 1px solid #696969;
+}
+
+.clear {
+	background: #f9fcae;
+}
+.clear:hover {
+    background: lightgrey;
+    /* color: #696969; */
+}
+
+.generation {
+	background: grey;
+	color: white;
+}
+.label {
+	color: white;
+	font-size: 1.5rem;
+	margin: 0 1%;
+}
+.input {
+    width: 10%;
+}
+.input1 {
+    width: 10%;
+}
+.submit {
+	background: gold;
+	margin: 0 1%;
+	font-size: 1.5rem;
+}
+
+.game {
+	flex: 1 0 auto;
+	border: '5px solid black';
+    max-height: '60vh';
+    
+}
+/* footer */
+.footer {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	background: #696969;
+	font-size: 3rem;
+	left: 0;
+	bottom: 0;
+	position: fixed;
+    width: 100%;
+    padding: .5%;
+    /* margin-top: 5%; */
+}
+.footer > h6 {
+    font-size: 1.5rem;
+    color: white;
+}
+.footer > div {
+    font-size: 1rem;
+}
+.footer > div:hover {
+	color: gold;
+}
+
+/* media query for phone */
+@media (max-width: 600px) {
+	.slider {
+		font-size: 1rem;
+	}
+	.bar {
+		width: 30%;
+		font-size: 1rem;
+	}
+	.label {
+		display: none;
+    }
+    .input {
+        width: 30%;
+    }
+    .input1 {
+        display: none;
+    }
+	.submit {
+		font-size: 1rem;
+    }
+    
+    .footer  {
+        background: black;
+    }
+    .footer > h6 {
+        color: black;
+    }
+}
