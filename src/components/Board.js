@@ -5,17 +5,20 @@ import { Slider } from '@material-ui/core';
 // presets
 import { pulsar } from './Presets/Pulsar';
 import { pentadecathlon } from './Presets/Pentadecathlon';
-import {spaceships} from './Presets/Space'
+import { spaceships } from './Presets/Space';
+
 
 import { useStyles, valueText, marks, countPeeps } from './Helpers';
+import '../Styles/board.css';
+
 
 const Game = () => {
 	// react-hook-form
 	const classes = useStyles();
 	const { register, handleSubmit } = useForm();
 	// state
-	const [numRows, setNumRows] = useState(40);
-	const [numCols, setNumCols] = useState(60);
+	const [numRows, setNumRows] = useState(25);
+	const [numCols, setNumCols] = useState(25);
 	const [speed, setSpeed] = useState(100);
 	const [color, setColor] = useState('white');
 	const [adjust, setAdjust] = useState(false);
@@ -153,17 +156,14 @@ const Game = () => {
 					value={speedRef.current}
 					defaultValue={speedRef.current}
 					onChange={handleChange}
-					getAriaValueText={valueText}
-					marks={marks}
+					
 					valueLabelDisplay='auto'
 				/>
 			</div>
-
-			<h3 className='label'>Choose Board Configuration</h3>
+			<p>Configure Game</p>
 			<div className='top'>
 				<div
-					
-					className={!active ? 'bar cycle': 'bar progress'}
+					className={!active ? 'bar cycle' : 'bar progress'}
 					onClick={() => {
 						setActive(!active);
 						activeRef.current = true;
@@ -175,10 +175,9 @@ const Game = () => {
 				<div className='bar random' onClick={() => randomGrid()}>
 					Random
 				</div>
-				<div className='bar generation'>Generation: {cycle}</div>
+				<div className='bar generation'>Cycle: {cycle}</div>
 				<div className='bar size'>
-					Grid Size:
-					<br /> {numRows}r X {numCols}c
+					{numRows}r x {numCols}c
 				</div>
 				<div
 					className='bar clear'
@@ -194,9 +193,8 @@ const Game = () => {
 			<form className='form' onSubmit={handleSubmit(onSubmit)}>
 				<label className='label'>Rows</label>
 				<input
-					className='input'
+					className='input1'
 					type='range'
-					label='row'
 					placeholder='rows'
 					defaultValue={numRows}
 					min='25'
@@ -204,11 +202,10 @@ const Game = () => {
 					name='row'
 					ref={register}
 				/>
-				<label className='label'>Colums</label>
+				<label className='label'>Columns</label>
 				<input
-					className='input'
+					className='input1'
 					type='range'
-					label='col'
 					placeholder='columns'
 					defaultValue={numCols}
 					min='25'
@@ -219,7 +216,6 @@ const Game = () => {
 				<input
 					className='input'
 					type='text'
-					label='color'
 					placeholder={color}
 					defaultValue={color}
 					name='color'
@@ -232,9 +228,8 @@ const Game = () => {
 				className='game'
 				style={{
 					display: 'grid',
-					gridTemplateColumns: `repeat( ${numCols}, 15px)`,
-					border: '5px solid black',
-					maxHeight: '60vh',
+					gridTemplateColumns: `repeat( ${numCols}, 10px)`,
+					// paddingBottom: '5%'
 				}}
 			>
 				{grid.map((rows, i) =>
@@ -261,12 +256,14 @@ const Game = () => {
 				)}
 			</div>
 
-			<div className='presets'>
+			<footer className='footer'>
+				<h6>Presets:</h6>
+
 				<div onClick={() => pulsarGrid()}>Pulsar</div>
 				<div onClick={() => pentadecathlonGrid()}>Pentadecathlon</div>
 				<div onClick={() => spaceGrid()}>Spaceships</div>
-				
-			</div>
+						
+			</footer>
 		</div>
 	);
 };
