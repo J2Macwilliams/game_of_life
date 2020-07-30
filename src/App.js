@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Board from './components/Board';
 import About from './components/About';
-import Rules from './components/Rules'
+
 import NavBar from './components/NavBar';
 
 import './App.css';
@@ -17,9 +17,7 @@ function App() {
 				<Route exact path='/'>
 					<Board />
 				</Route>
-				<Route path='/rules'>
-					<Rules />
-				</Route>
+
 				<Route path='/about'>
 					<About />
 				</Route>
