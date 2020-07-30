@@ -6,11 +6,14 @@ import { Slider } from '@material-ui/core';
 import { pulsar } from './Presets/Pulsar';
 import { pentadecathlon } from './Presets/Pentadecathlon';
 import { spaceships } from './Presets/Space';
+import {gliderGun} from './Presets/GGun'
+// small presets
+import { smallPulsar } from './SmallPresets/Pulsar';
+import { smallPenta } from './SmallPresets/Penta';
+import { smallSpaceShips } from './SmallPresets/Spaceship';
 
-
-import { useStyles, valueText, marks, countPeeps } from './Helpers';
+import { useStyles, countPeeps } from './Helpers';
 import '../Styles/board.css';
-
 
 const Game = () => {
 	// react-hook-form
@@ -77,7 +80,7 @@ const Game = () => {
 		} else {
 			scratch();
 		}
-	}, [adjust, numRows, numCols]);
+	}, [adjust, numRows, numCols, scratch]);
 
 	// create Random config
 	const randomGrid = useCallback(() => {
@@ -90,20 +93,44 @@ const Game = () => {
 			}
 			return rows;
 		});
-	}, [numRows, numCols]);
+	}, []);
 
 	// preset grids
 	const pulsarGrid = useCallback(() => {
+		setNumCols(60);
+		setNumRows(40);
 		setGrid(pulsar);
-	});
+	},[]);
 
 	const pentadecathlonGrid = useCallback(() => {
+		setNumCols(60);
+		setNumRows(40);
 		setGrid(pentadecathlon);
-	});
+	},[]);
 
 	const spaceGrid = useCallback(() => {
+		setNumCols(60);
+		setNumRows(40);
 		setGrid(spaceships);
-	});
+	},[]);
+
+	const gliderGunGrid = useCallback(() => {
+		setNumCols(60);
+		setNumRows(40);
+		setGrid(gliderGun);
+	},[]);
+	// small presets
+	const smallPulsarGrid = useCallback(() => {
+		setGrid(smallPulsar);
+	},[]);
+
+	const smallPentaGrid = useCallback(() => {
+		setGrid(smallPenta);
+	},[]);
+
+	const smallSpaceGrid = useCallback(() => {
+		setGrid(smallSpaceShips);
+	},[]);
 
 	// Run the Game of Life, DBl Buffer
 	const runAlive = useCallback(() => {
@@ -156,7 +183,6 @@ const Game = () => {
 					value={speedRef.current}
 					defaultValue={speedRef.current}
 					onChange={handleChange}
-					
 					valueLabelDisplay='auto'
 				/>
 			</div>
@@ -228,7 +254,7 @@ const Game = () => {
 				className='game'
 				style={{
 					display: 'grid',
-					gridTemplateColumns: `repeat( ${numCols}, 10px)`,
+					gridTemplateColumns: `repeat( ${numCols}, 15px)`,
 					// paddingBottom: '5%'
 				}}
 			>
@@ -262,7 +288,14 @@ const Game = () => {
 				<div onClick={() => pulsarGrid()}>Pulsar</div>
 				<div onClick={() => pentadecathlonGrid()}>Pentadecathlon</div>
 				<div onClick={() => spaceGrid()}>Spaceships</div>
-						
+				<div onClick={() => gliderGunGrid()}>GliderGun</div>
+			</footer>
+			<footer className='footerSmall'>
+				<h6>Presets:</h6>
+
+				<div onClick={() => smallPulsarGrid()}>Pulsar</div>
+				<div onClick={() => smallPentaGrid()}>Pentadecathlon</div>
+				<div onClick={() => smallSpaceGrid()}>Spaceships</div>
 			</footer>
 		</div>
 	);
