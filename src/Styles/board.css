@@ -142,9 +142,29 @@
     }
     
     .footer  {
-        background: black;
+        display: none;
     }
-    .footer > h6 {
-        color: black;
-    }
+	
+	.footerSmall {
+		display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	background: #696969;
+	font-size: 3rem;
+	left: 0;
+	bottom: 0;
+	position: fixed;
+    width: 100%;
+    padding: .5%;
+	}
+	.footerSmall > h6 {
+		font-size: 1.5rem;
+		color: white;
+	}
+	.footerSmall > div {
+		font-size: 1rem;
+	}
+	.footerSmall > div:hover {
+		color: gold;
+	}
 }
