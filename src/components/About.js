@@ -14,9 +14,12 @@ export const useStyles = makeStyles(() => ({
 		backgroundColor: 'black',
 	},
 	paper: {
-		background: '#696969',
+		background: '#545453',
 		padding: '2%',
 		margin: 50,
+	},
+	content: {
+		color: 'white',
 	},
 	extra1: {
 		background: 'black',
@@ -70,13 +73,17 @@ const About = () => {
 	return (
 		<div className={classes.about}>
 			<Paper className={classes.paper}>
-				<Typography className={classes.title} variant='h3'>
+				<Typography className={classes.content} variant='h3'>
 					Game of Life
 				</Typography>
 				<Typography className={classes.content} variant='body1'>
-					- is a zero-player cellular automaton game created by John Conway in
-					1970. Dependent on the initial configuration, cells will evolve. Basic
-					rules govern the cells lifecycle.
+					Inspired by the creation of the Turing Machine and the resulting
+					Cellular Automata, John Conway created the zero-player cellular
+					automaton game in 1970. In theory the games results are as powerful as
+					a universal Turing Machine. The game operates on certain principles
+					inherent in life. Initially, its dependent on the configuration upon
+					which cells will evolve. As it operates, basic rules govern the cells
+					lifecycle. These Rules are:
 				</Typography>
 			</Paper>
 
@@ -155,9 +162,9 @@ const About = () => {
 							</a>
 						</Typography>
 						<Typography variant='body1'>
-							Named after English Mathematician and computer scientist. It is a
-							system of data-manipulation rules that, when ran, is able to
-							recognize or decide other data-manipulation sets.
+							is named after English Mathematician and computer scientist, Alan
+							Turing. It is a system of data-manipulation rules that, when ran,
+							is able to recognize or decide other data-manipulation sets.
 						</Typography>
 					</Card>
 				</Grid>
