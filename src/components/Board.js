@@ -2,7 +2,10 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { produce } from 'immer';
 import { useForm } from 'react-hook-form';
 import { Slider } from '@material-ui/core';
-import {pulsar} from './Presets/Pulsar'
+// presets
+import { pulsar } from './Presets/Pulsar';
+import { pentadecathlon } from './Presets/Pentadecathlon';
+import {spaceships} from './Presets/Space'
 
 import { useStyles, valueText, marks, countPeeps } from './Helpers';
 
@@ -27,7 +30,6 @@ const Game = () => {
 		setColor(data.color);
 		setAdjust(true);
 	};
-
 
 	// create references for current state
 	const gridRef = useRef();
@@ -87,9 +89,18 @@ const Game = () => {
 		});
 	}, [numRows, numCols]);
 
+	// preset grids
 	const pulsarGrid = useCallback(() => {
-		setGrid(pulsar)
-	})
+		setGrid(pulsar);
+	});
+
+	const pentadecathlonGrid = useCallback(() => {
+		setGrid(pentadecathlon);
+	});
+
+	const spaceGrid = useCallback(() => {
+		setGrid(spaceships);
+	});
 
 	// Run the Game of Life, DBl Buffer
 	const runAlive = useCallback(() => {
@@ -250,9 +261,10 @@ const Game = () => {
 			</div>
 
 			<div className='presets'>
-				
 				<div onClick={() => pulsarGrid()}>Pulsar</div>
-				<p>presets on 40r60c</p>
+				<div onClick={() => pentadecathlonGrid()}>Pentadecathlon</div>
+				<div onClick={() => spaceGrid()}>Spaceships</div>
+				{/* <p>presets on 40r60c</p> */}
 			</div>
 		</div>
 	);
