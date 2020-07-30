@@ -16,7 +16,6 @@ import { useStyles, countPeeps } from './Helpers';
 import '../Styles/board.css';
 
 const Game = () => {
-	// react-hook-form
 	const classes = useStyles();
 	const { register, handleSubmit } = useForm();
 	// state
