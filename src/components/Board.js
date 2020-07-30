@@ -6,7 +6,7 @@ import { Slider } from '@material-ui/core';
 import { pulsar } from './Presets/Pulsar';
 import { pentadecathlon } from './Presets/Pentadecathlon';
 import { spaceships } from './Presets/Space';
-import {gliderGun} from './Presets/GGun'
+import { gliderGun } from './Presets/GGun';
 // small presets
 import { smallPulsar } from './SmallPresets/Pulsar';
 import { smallPenta } from './SmallPresets/Penta';
@@ -38,16 +38,13 @@ const Game = () => {
 	};
 
 	// create references for current state
-	const gridRef = useRef();
-	gridRef.current = gridRef;
-
 	const activeRef = useRef(active);
 	activeRef.current = active;
 
-	const rowRef = useRef();
+	const rowRef = useRef(numRows);
 	rowRef.current = numRows;
 
-	const columnRef = useRef();
+	const columnRef = useRef(numCols);
 	columnRef.current = numCols;
 
 	const speedRef = useRef(speed);
@@ -73,13 +70,15 @@ const Game = () => {
 		});
 	}, []);
 
-	// invoke the board
+	// invoke the board initial and with changes 
 	useEffect(() => {
+		scratch()
 		if (adjust === false) {
 			return;
 		} else {
 			scratch();
 		}
+		
 	}, [adjust, numRows, numCols, scratch]);
 
 	// create Random config
@@ -100,37 +99,25 @@ const Game = () => {
 		setNumCols(60);
 		setNumRows(40);
 		setGrid(pulsar);
-	},[]);
+	}, []);
 
 	const pentadecathlonGrid = useCallback(() => {
 		setNumCols(60);
 		setNumRows(40);
 		setGrid(pentadecathlon);
-	},[]);
+	}, []);
 
 	const spaceGrid = useCallback(() => {
 		setNumCols(60);
 		setNumRows(40);
 		setGrid(spaceships);
-	},[]);
+	}, []);
 
 	const gliderGunGrid = useCallback(() => {
 		setNumCols(60);
 		setNumRows(40);
 		setGrid(gliderGun);
-	},[]);
-	// small presets
-	const smallPulsarGrid = useCallback(() => {
-		setGrid(smallPulsar);
-	},[]);
-
-	const smallPentaGrid = useCallback(() => {
-		setGrid(smallPenta);
-	},[]);
-
-	const smallSpaceGrid = useCallback(() => {
-		setGrid(smallSpaceShips);
-	},[]);
+	}, []);
 
 	// Run the Game of Life, DBl Buffer
 	const runAlive = useCallback(() => {
@@ -255,7 +242,6 @@ const Game = () => {
 				style={{
 					display: 'grid',
 					gridTemplateColumns: `repeat( ${numCols}, 15px)`,
-					// paddingBottom: '5%'
 				}}
 			>
 				{grid.map((rows, i) =>
@@ -281,10 +267,8 @@ const Game = () => {
 					))
 				)}
 			</div>
-
 			<footer className='footer'>
 				<h6>Presets:</h6>
-
 				<div onClick={() => pulsarGrid()}>Pulsar</div>
 				<div onClick={() => pentadecathlonGrid()}>Pentadecathlon</div>
 				<div onClick={() => spaceGrid()}>Spaceships</div>
@@ -292,10 +276,9 @@ const Game = () => {
 			</footer>
 			<footer className='footerSmall'>
 				<h6>Presets:</h6>
-
-				<div onClick={() => smallPulsarGrid()}>Pulsar</div>
-				<div onClick={() => smallPentaGrid()}>Pentadecathlon</div>
-				<div onClick={() => smallSpaceGrid()}>Spaceships</div>
+				<div onClick={() => setGrid(smallPulsar)}>Pulsar</div>
+				<div onClick={() => setGrid(smallPenta)}>Pentadecathlon</div>
+				<div onClick={() => setGrid(smallSpaceShips)}>Spaceships</div>
 			</footer>
 		</div>
 	);
