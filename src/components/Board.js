@@ -2,6 +2,10 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { produce } from 'immer';
 import { useForm } from 'react-hook-form';
 import { Slider } from '@material-ui/core';
+// presets
+import { pulsar } from './Presets/Pulsar';
+import { pentadecathlon } from './Presets/Pentadecathlon';
+import {spaceships} from './Presets/Space'
 
 import { useStyles, valueText, marks, countPeeps } from './Helpers';
 
@@ -85,6 +89,19 @@ const Game = () => {
 		});
 	}, [numRows, numCols]);
 
+	// preset grids
+	const pulsarGrid = useCallback(() => {
+		setGrid(pulsar);
+	});
+
+	const pentadecathlonGrid = useCallback(() => {
+		setGrid(pentadecathlon);
+	});
+
+	const spaceGrid = useCallback(() => {
+		setGrid(spaceships);
+	});
+
 	// Run the Game of Life, DBl Buffer
 	const runAlive = useCallback(() => {
 		// check/return if not running
@@ -159,7 +176,8 @@ const Game = () => {
 				</div>
 				<div className='bar generation'>Generation: {cycle}</div>
 				<div className='bar size'>
-					Grid Size:<br/> {numRows}r X {numCols}c
+					Grid Size:
+					<br /> {numRows}r X {numCols}c
 				</div>
 				<div
 					className='bar clear'
@@ -243,7 +261,10 @@ const Game = () => {
 			</div>
 
 			<div className='presets'>
-				<h1>presets</h1>
+				<div onClick={() => pulsarGrid()}>Pulsar</div>
+				<div onClick={() => pentadecathlonGrid()}>Pentadecathlon</div>
+				<div onClick={() => spaceGrid()}>Spaceships</div>
+				{/* <p>presets on 40r60c</p> */}
 			</div>
 		</div>
 	);

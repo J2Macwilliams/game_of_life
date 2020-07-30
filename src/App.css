@@ -1,43 +1,38 @@
 html {
-  font-size: 62.5%;
-  max-height: 100vh;
-  max-width: 100%;
-  box-sizing: border-box;
+	font-size: 62.5%;
+	max-height: 100vh;
+	max-width: 100%;
+	box-sizing: border-box;
 }
 
 .App {
-  height: 100vh;
+	height: 100vh;
 	text-align: center;
 	background: black;
 }
 
-
-
 .navbar {
 	display: flex;
-  justify-content: space-between;
-  text-align: center;
-	/* align-items: center; */
-	/* width: 30%; */
+	justify-content: space-between;
+	text-align: center;
+	
 }
 
 h1 {
 	font-size: 3rem;
 	color: white;
-	/* padding: 1%; */
-	/* margin-bottom: 2%; */
-}
 
+}
 
 .NLink {
 	text-decoration: none;
-	padding: .5%;
+	padding: 0.5%;
 	color: rgba(248, 246, 246, 0.6);
 	font-size: 2rem;
 }
 
 .navbar > a.activeNavButton {
-	background-color: yellow;
+	background-color: #f9fcae;
 	color: black;
 	border: 1px solid black;
 	box-shadow: 0 5px 10px black;
@@ -48,34 +43,32 @@ h1 {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	
 }
 
 .slider {
-  margin-top: 1%;
-  width: 40%;
-  font-size: 1.5rem;
-  color: #f5f1a9;
+	margin-top: 1%;
+	width: 40%;
+	font-size: 1.5rem;
+	color: #f5f1a9;
 }
 
-
 .label {
-  color: white;
-  font-size: 1.5rem;
-  margin: 0 1%;
+	color: white;
+	font-size: 1.5rem;
+	margin: 0 1%;
 }
 
 .form {
-  width: 40%;
+	width: 40%;
 }
 
 .input {
-  width: 10%;
+	width: 10%;
 }
 .submit {
-  background: gold;
-  margin: 0 1%;
-  font-size: 1.5rem;
+	background: gold;
+	margin: 0 1%;
+	font-size: 1.5rem;
 }
 .top {
 	display: flex;
@@ -84,10 +77,10 @@ h1 {
 	width: 80%;
 }
 
-@media(max-width: 767px){
-  .top {
-	width: 100%;
-  }
+@media (max-width: 767px) {
+	.top {
+		width: 100%;
+	}
 }
 
 .bar {
@@ -98,10 +91,10 @@ h1 {
 	justify-content: center;
 	width: 15%;
 }
-@media(max-width: 767px){
-  .bar {
-	width: 20%;
-  }
+@media (max-width: 767px) {
+	.bar {
+		width: 20%;
+	}
 }
 .random {
 	background: gold;
@@ -124,15 +117,25 @@ h1 {
 	color: white;
 }
 .game {
-  flex: 1 0 auto;
+	flex: 1 0 auto;
 }
 .presets {
-	/* color: #f5f1a9; */
-	background: #f5f1a9;
-  font-size: 3rem;
-  left: 0;
-  bottom: 0;
-  position:fixed;
-  width: 100%;
-  
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	background: #696969;
+	font-size: 3rem;
+	left: 0;
+	bottom: 0;
+	position: fixed;
+	width: 100%;
+}
+
+.presets > div:hover{
+	color: gold;
+}
+.presets > p {
+	color: black;
+	padding: 0 1%;
+	font-size: 1.5rem;
 }
