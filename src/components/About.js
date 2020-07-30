@@ -4,38 +4,38 @@ import {
 	Card,
 	Typography,
 	Grid,
-	createMuiTheme,
+	// createMuiTheme,
 } from '@material-ui/core';
 import { useStyles } from './Helpers';
-import '../App.css';
-const theme = createMuiTheme();
-theme.typography.h3 = {
-	fontSize: '2rem',
-	'@media (min-width:600px)': {
-		fontSize: '1.5rem',
-	},
-	[theme.breakpoints.up('md')]: {
-		fontSize: '2.4rem',
-	},
-};
-theme.typography.h6 = {
-	fontSize: '2rem',
-	'@media (min-width:600px)': {
-		fontSize: '1.3rem',
-	},
-	[theme.breakpoints.up('md')]: {
-		fontSize: '1.8rem',
-	},
-};
-theme.typography.body2 = {
-	fontSize: '1.2rem',
-	'@media (min-width:600px)': {
-		fontSize: '1.5rem',
-	},
-	[theme.breakpoints.up('md')]: {
-		fontSize: '2.4rem',
-	},
-};
+// import '../App.css';
+// const theme = createMuiTheme();
+// theme.typography.h3 = {
+// 	fontSize: '2rem',
+// 	'@media (min-width:600px)': {
+// 		fontSize: '1.5rem',
+// 	},
+// 	[theme.breakpoints.up('md')]: {
+// 		fontSize: '2.4rem',
+// 	},
+// };
+// theme.typography.h6 = {
+// 	fontSize: '2rem',
+// 	'@media (min-width:600px)': {
+// 		fontSize: '1.3rem',
+// 	},
+// 	[theme.breakpoints.up('md')]: {
+// 		fontSize: '1.8rem',
+// 	},
+// };
+// theme.typography.body2 = {
+// 	fontSize: '1.2rem',
+// 	'@media (min-width:600px)': {
+// 		fontSize: '1.5rem',
+// 	},
+// 	[theme.breakpoints.up('md')]: {
+// 		fontSize: '2.4rem',
+// 	},
+// };
 const About = () => {
 	const classes = useStyles();
 	return (
@@ -98,7 +98,7 @@ const About = () => {
 				</Grid>
 			</Grid>
 			<Grid spacing={2} className={classes.grid}>
-				<Grid  xs={12} sm={6} md={6}>
+				<Grid xs={12} sm={6} md={6}>
 					<Card className={classes.extra1}>
 						<Typography className={classes.automaton} variant='h5'>
 							<a
@@ -109,9 +109,9 @@ const About = () => {
 							</a>
 						</Typography>
 						<Typography variant='body1'>
-							- are discrete, abstract computational systems. They are defined of a
-							finite number of cells, evolving in parallel at timed steps. They
-							can compute functions and solve algorithmic problems.
+							- are discrete, abstract computational systems. They are defined
+							of a finite number of cells, evolving in parallel at timed steps.
+							They can compute functions and solve algorithmic problems.
 						</Typography>
 					</Card>
 				</Grid>
@@ -126,8 +126,9 @@ const About = () => {
 							</a>
 						</Typography>
 						<Typography variant='body1'>
-							Named after English Mathematician and computer scientist. It is a system of data-manipulation rules that, when ran, is able to
-							recognize or decide other data-manipulation sets. 
+							Named after English Mathematician and computer scientist. It is a
+							system of data-manipulation rules that, when ran, is able to
+							recognize or decide other data-manipulation sets.
 						</Typography>
 					</Card>
 				</Grid>
