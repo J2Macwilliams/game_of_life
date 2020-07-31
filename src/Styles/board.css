@@ -1,14 +1,12 @@
 .life {
 	width: 100%;
-	position: absolute;
 	box-sizing: border-box;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
-    align-items: center;
+	align-items: center;
 	background: black;
 	padding: 1%;
-	
 }
 
 .slider {
@@ -17,10 +15,9 @@
 	font-size: 1.5rem;
 	color: #f5f1a9;
 }
-.life > p{
-    color: #f5f1a9;
+.life > p {
+	color: #f5f1a9;
 	font-size: 1rem;
-	
 }
 
 .top {
@@ -65,8 +62,8 @@
 	background: #f9fcae;
 }
 .clear:hover {
-    background: lightgrey;
-    /* color: #696969; */
+	background: lightgrey;
+	/* color: #696969; */
 }
 
 .generation {
@@ -79,10 +76,10 @@
 	margin: 0 1%;
 }
 .input {
-    width: 10%;
+	width: 10%;
 }
 .input1 {
-    width: 10%;
+	width: 10%;
 }
 .submit {
 	background: gold;
@@ -99,6 +96,8 @@
 	flex: 1 0 auto;
 	border: '5px solid black';
 	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
 	width: 100%;
 	padding: 1%;
 	overflow-x: hidden;
@@ -113,15 +112,15 @@
 	left: 0;
 	bottom: 0;
 	position: fixed;
-    width: 100%;
-    padding: .5%;
+	width: 100%;
+	padding: 0.5%;
 }
 .footer > h6 {
-    font-size: 1.5rem;
-    color: white;
+	font-size: 1.5rem;
+	color: white;
 }
 .footer > div {
-    font-size: 1rem;
+	font-size: 1rem;
 }
 .footer > div:hover {
 	color: gold;
@@ -138,32 +137,32 @@
 	}
 	.label {
 		display: none;
-    }
-    .input {
-        width: 30%;
-    }
-    .input1 {
-        display: none;
-    }
+	}
+	.input {
+		width: 30%;
+	}
+	.input1 {
+		display: none;
+	}
 	.submit {
 		font-size: 1rem;
-    }
-    
-    .footer  {
-        display: none;
-    }
-	
+	}
+
+	.footer {
+		display: none;
+	}
+
 	.footerSmall {
 		display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-	background: #696969;
-	font-size: 3rem;
-	left: 0;
-	bottom: 0;
-	position: fixed;
-    width: 100%;
-    padding: .5%;
+		justify-content: space-evenly;
+		align-items: center;
+		background: #696969;
+		font-size: 3rem;
+		left: 0;
+		bottom: 0;
+		position: fixed;
+		width: 100%;
+		padding: 0.5%;
 	}
 	.footerSmall > h6 {
 		font-size: 1.5rem;
