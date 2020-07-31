@@ -1,10 +1,14 @@
 .life {
 	width: 100%;
+	position: absolute;
+	box-sizing: border-box;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
     align-items: center;
-    background: black;
+	background: black;
+	padding: 1%;
+	
 }
 
 .slider {
@@ -15,7 +19,8 @@
 }
 .life > p{
     color: #f5f1a9;
-    font-size: 1rem;
+	font-size: 1rem;
+	
 }
 
 .top {
@@ -85,11 +90,18 @@
 	font-size: 1.5rem;
 }
 .gameContainer {
-	padding: 2% 0;
+	padding: 2%;
+	width: 100%;
+	box-sizing: border-box;
+	flex: 1 0 auto;
 }
 .game {
 	flex: 1 0 auto;
 	border: '5px solid black';
+	box-sizing: border-box;
+	width: 100%;
+	padding: 1%;
+	overflow-x: hidden;
 }
 /* footer */
 .footer {

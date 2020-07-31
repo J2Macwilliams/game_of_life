@@ -240,6 +240,7 @@ const Game = () => {
 					style={{
 						display: 'grid',
 						gridTemplateColumns: `repeat( ${numCols}, 15px)`,
+						boxSizing: 'border-box'
 					}}
 				>
 					{grid.map((rows, i) =>
@@ -260,6 +261,7 @@ const Game = () => {
 									height: 15,
 									background: grid[i][k] ? color : undefined,
 									border: ' 1px solid rgba(248, 246, 246, 0.15)',
+									
 								}}
 							/>
 						))
