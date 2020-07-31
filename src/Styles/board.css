@@ -4,7 +4,7 @@
 	display: flex;
 	flex-direction: column;
     align-items: center;
-    
+    background: black;
 }
 
 .slider {
@@ -16,10 +16,7 @@
 .life > p{
     color: #f5f1a9;
     font-size: 1rem;
-    
 }
-
-
 
 .top {
 	display: flex;
@@ -87,12 +84,12 @@
 	margin: 0 1%;
 	font-size: 1.5rem;
 }
-
+.gameContainer {
+	padding: 2% 0;
+}
 .game {
 	flex: 1 0 auto;
 	border: '5px solid black';
-    max-height: '60vh';
-    
 }
 /* footer */
 .footer {
@@ -106,7 +103,6 @@
 	position: fixed;
     width: 100%;
     padding: .5%;
-    /* margin-top: 5%; */
 }
 .footer > h6 {
     font-size: 1.5rem;

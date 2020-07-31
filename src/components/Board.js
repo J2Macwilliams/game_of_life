@@ -219,7 +219,7 @@ const Game = () => {
 					placeholder='columns'
 					defaultValue={numCols}
 					min='25'
-					max='60'
+					max='100'
 					name='col'
 					ref={register}
 				/>
@@ -234,35 +234,37 @@ const Game = () => {
 				<input className='submit' type='submit' />
 			</form>
 			{/* Game Grid */}
-			<div
-				className='game'
-				style={{
-					display: 'grid',
-					gridTemplateColumns: `repeat( ${numCols}, 15px)`,
-				}}
-			>
-				{grid.map((rows, i) =>
-					rows.map((col, k) => (
-						<div
-							key={`${i}-${k}`}
-							onClick={() => {
-								// use immer to create a copy of the grid state
-								const nextGen = produce(grid, gridCopy => {
-									// toggle cell from alive to dead
-									gridCopy[i][k] = grid[i][k] ? 0 : 1;
-								});
-								setGrid(nextGen);
-							}}
-							// define and change cells if alive or dead
-							style={{
-								width: 15,
-								height: 15,
-								background: grid[i][k] ? color : undefined,
-								border: ' 1px solid rgba(248, 246, 246, 0.15)',
-							}}
-						/>
-					))
-				)}
+			<div className='gameContainer'>
+				<div
+					className='game'
+					style={{
+						display: 'grid',
+						gridTemplateColumns: `repeat( ${numCols}, 15px)`,
+					}}
+				>
+					{grid.map((rows, i) =>
+						rows.map((col, k) => (
+							<div
+								key={`${i}-${k}`}
+								onClick={() => {
+									// use immer to create a copy of the grid state
+									const nextGen = produce(grid, gridCopy => {
+										// toggle cell from alive to dead
+										gridCopy[i][k] = grid[i][k] ? 0 : 1;
+									});
+									setGrid(nextGen);
+								}}
+								// define and change cells if alive or dead
+								style={{
+									width: 15,
+									height: 15,
+									background: grid[i][k] ? color : undefined,
+									border: ' 1px solid rgba(248, 246, 246, 0.15)',
+								}}
+							/>
+						))
+					)}
+				</div>
 			</div>
 			<footer className='footer'>
 				<h6>Presets:</h6>
