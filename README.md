@@ -17,6 +17,7 @@ Is a 'cellular automaton' invented by Cambridge Mathematician John Conway in 197
 
 The Game of Life is [Turing Complete](https://en.wikipedia.org/wiki/Turing_completeness), and provides a great understanding of possibilities of a [Turing machine](https://en.wikipedia.org/wiki/Turing_machine).
 
+---
 
 Built upon:
 
