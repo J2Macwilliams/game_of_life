@@ -1,10 +1,12 @@
 .App {
 	font-size: 62.5%;
 	max-width: 100vw;
-	height: 100vh;
+	height: 96vh;
 	/* box-sizing: border-box; */
 	text-align: center;
 	background: black;
+	padding: .5%;
+	border: 5px solid white;
 	
 }
 
