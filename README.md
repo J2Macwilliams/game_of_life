@@ -1,3 +1,4 @@
+# Conway's Game of Life 
 
 |  [Jeremy J McWilliams](https://jeremyjmcwilliams.com)|
 | :---------------------------------------------------: |
@@ -5,9 +6,10 @@
 |Full Stack Developer |
 | [<img src="https://github.com/favicon.ico" width="30"> ](https://github.com/J2Macwilliams)   [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="30"> ](https://www.linkedin.com/in/jeremyjmcwilliams/) | 
 
-# Conway's Game of Life ##
+### Learned Objective
+*To gain an in-depth understanding of the power and possibilities of algorithms*
 
-Is a 'cellular automaton' invented by Cambridge Mathematician John Conway in 1970. It's initial state and a set of rules, dictate the evolution of this zero-player game. The game progresses simply cycling through the cellular automaton algorithm. 
+**Conway's Game of Life** is a 'cellular automaton' invented by Cambridge Mathematician John Conway in 1970. It's initial state and a set of rules, dictate the evolution of this zero-player game. The game progresses simply cycling through the cellular automaton algorithm. 
 
 ## These rules reflect many of the inherent rules of life itself.
 
