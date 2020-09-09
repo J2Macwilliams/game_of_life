@@ -5,11 +5,11 @@
 |Full Stack Developer |
 | [<img src="https://github.com/favicon.ico" width="30"> ](https://github.com/J2Macwilliams)   [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="30"> ](https://www.linkedin.com/in/jeremyjmcwilliams/) | 
 
-## Conway's Game of Life ##
+# Conway's Game of Life ##
 
 Is a 'cellular automaton' invented by Cambridge Mathematician John Conway in 1970. It's initial state and a set of rules, dictate the evolution of this zero-player game. The game progresses simply cycling through the cellular automaton algorithm. 
 
-# These rules reflect many of the inherent rules of life itself.
+## These rules reflect many of the inherent rules of life itself.
 
 1. Any live cell with two or three live neighbours survives.
 2. Any dead cell with three live neighbours becomes a live cell.
