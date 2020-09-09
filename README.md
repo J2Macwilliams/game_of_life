@@ -8,6 +8,12 @@
 
 # Conway's Game of Life 
 
+---
+### Status:
+*deployed*
+
+---
+
 ### Learned Objective
 *To gain an in-depth understanding of the power and possibilities of algorithms*
 
