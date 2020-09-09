@@ -19,7 +19,8 @@ The Game of Life is [Turing Complete](https://en.wikipedia.org/wiki/Turing_compl
 
 
 Built upon:
-[# Create React App](https://github.com/facebook/create-react-app) 
+
+# [Create React App](https://github.com/facebook/create-react-app) 
 
 ## Development Script
 
